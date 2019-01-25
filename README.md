@@ -1,2 +1,2 @@
-# OfficeSpace
-A vintage office game for avoiding the peers and entering the bliss
+# Every Day Kitchen
+A vintage recipe game for improving the memory
