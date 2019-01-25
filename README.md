@@ -58,6 +58,8 @@ see below
 * Flour
 * Onion
 * Cheese
+* Wine
+* Squash (Yellow Thing)
 
 ### optional:
 
