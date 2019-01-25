@@ -1,33 +1,77 @@
+let player;
+let controls;
+let blocks;
+
 class Main extends Phaser.Scene {
   constructor() {
     super({key: "Main"});
   }
 
-  preload () {
-    this.load.setBaseURL('http://labs.phaser.io');
-    this.load.image('sky', 'assets/skies/space3.png');
-    this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-    this.load.image('red', 'assets/particles/red.png');
+  preload() {
+    this.load.image('placeholder', '/assets/placeholder.jpg');
+    this.load.image('pane', '/assets/pane.jpg');
+    this.load.image('shelve', '/assets/shelve.jpg');
+    this.load.image('table', '/assets/table.jpg');
+    this.load.image('stove', '/assets/stove.jpg');
+    this.load.spritesheet('dude', '/assets/dude.png', {frameWidth: 32, frameHeight: 48});
   }
 
-  create () {
-    this.add.image(400, 300, 'sky');
+  create() {
+    // this.add.image(400, 300, 'placeholder');
 
-    let particles = this.add.particles('red');
-    let emitter = particles.createEmitter({
-      speed: 100,
-      scale: {
-        start: 1,
-        end: 0
-      },
-      blendMode: 'ADD'
+    player = this.physics.add.sprite(150, 392, 'dude');
+
+    player.body.allowGravity = false;
+
+    this.anims.create({
+      key: 'left',
+      frames: this.anims.generateFrameNumbers('dude', {start: 0, end: 3}),
+      frameRate: 10,
+      repeat: -1
     });
-    let logo = this.physics.add.image(400, 100, 'logo');
 
-    logo.setVelocity(100, 200);
-    logo.setBounce(1, 1);
-    logo.setCollideWorldBounds(true);
+    this.anims.create({
+      key: 'right',
+      frames: this.anims.generateFrameNumbers('dude', {start: 5, end: 8}),
+      frameRate: 10,
+      repeat: -1
+    });
 
-    emitter.startFollow(logo);
+    this.anims.create({
+      key: 'turn',
+      frames: [{key: 'dude', frame: 4}],
+      frameRate: 10
+    });
+
+    blocks = this.physics.add.staticGroup();
+
+    blocks.create(400, 508, 'pane');
+    blocks.create(118, 38, 'shelve');
+    blocks.create(420, 348, 'table');
+    blocks.create(732, 178, 'stove');
+
+    this.physics.add.collider(player, blocks);
+
+    controls = this.input.keyboard.createCursorKeys();
+  }
+
+  update() {
+    if (controls.left.isDown) {
+      player.setVelocityX(-180);
+      player.anims.play('left', true);
+    } else if (controls.right.isDown) {
+      player.setVelocityX(180);
+      player.anims.play('right', true);
+    } else if (controls.up.isDown) {
+      player.setVelocityY(-180);
+      player.anims.play('up', true);
+    } else if (controls.down.isDown) {
+      player.setVelocityY(180);
+      player.anims.play('down', true);
+    } else {
+      player.setVelocityX(0);
+      player.setVelocityY(0);
+      player.anims.play('turn', true);
+    }
   }
 }
