@@ -37,9 +37,9 @@ see below
 			 
 
 ## Hardships: 
+* Recipe has ink-stains covering part of the ingredients name (old photographed recipe, lvl 2)
 * Recipe changed slightly at the end of the recipe (lvl 3)
 * Broken tablet screen (lvl 4)
-* Recipe has ink-stains covering part of the ingredients name (old photographed recipe, lvl 2)
 * Burned hand (lvl 5)
 		
 
@@ -70,7 +70,7 @@ see below
 We do a total of 5 Levels (if thats cool)
 
 
-## Game logic / game mechanics / data
+## Game logic
 ### Dish name / Recipe / Heat / Threshold:
 
 1. Pasta with Ragù alla bolognese / Pasta, Tomato, Ground Meat/ 4 / 3
