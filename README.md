@@ -15,26 +15,26 @@ see below
 	Background music
 ### Optional: 
 #### Graphical:
-			..* Fire effect for burned hand
-			..* burned hand cursor
-			..* cheering sound for successfully cooked meal
-			..* happy family (part of successful score screen)
-			..* unhappy family / lonely dude (part of losing screen)
+			⋅⋅* Fire effect for burned hand
+			⋅⋅* burned hand cursor
+			⋅⋅* cheering sound for successfully cooked meal
+			⋅⋅* happy family (part of successful score screen)
+			⋅⋅* unhappy family / lonely dude (part of losing screen)
 		
-		Sound: 
+#### Sound: 
 			..* Gulp sound effect for dropping into the pot
 			..* Rattling sound for picking up ingredients
 			..* page turning sound for opening up the tablet 
 			 
 
-Hardships: 
+## Hardships: 
 		..* Recipe changed slightly at the end of the recipe (lvl 3)
 		..* Broken tablet screen (lvl 4)
 		..* Recipe has ink-stains covering part of the ingredients name (old photographed recipe, lvl 2)
 		..* Burned hand (lvl 5)
 		
 
-Shelf ingredients with in-game names:
+## Shelf ingredients with in-game names:
 
 ..* Pasta
 ..* Ground Meat
@@ -50,19 +50,19 @@ Shelf ingredients with in-game names:
 ..* Onion
 ..* Cheese
 
-optional:
+### optional:
 
 ..* Grasshoppers
 ..* Ketchup
 ..* Meat Sticks (sausages)
 
 
-### Levels
+## Levels
 5 Levels
 
 
-### Game logic / game mechanics / data
-#### Dish name / Recipe / Heat / Threshold:
+## Game logic / game mechanics / data
+### Dish name / Recipe / Heat / Threshold:
 
 Pasta with Ragù alla bolognese / Pasta, Tomato, Ground Meat/ 4 / 3
 Ratatouille / Squash, Tomato, Zucchini, Eggplant/ 3 / 4
@@ -71,7 +71,7 @@ Stuffed Quail with "mystery" sauce / Butter, Flour, Mint, Wine, Bird parts, Bird
 Stu´s Asian Stew / Ground meat, Bird parts, onion, Broccoli, Ginger, Bell pepper / 5 / 5
 
 
-#### Scoring system:
+### Scoring system:
 
 	..* per too many, too few, false ingredient: -1
 	..* Correct ingredient: +1
