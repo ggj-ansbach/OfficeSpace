@@ -60,15 +60,16 @@ see below
 * Cheese
 
 
-### optional:
-
-* Grasshoppers
-* Ketchup
-* Meat Sticks (sausages)
-
 
 ## Levels
 We do a total of 5 Levels (if thats cool)
+
+## Tutorial
+During the first level, maybe add half transparent textboxes explaining what the player needs to do for EACH screen.
+Kitchen: Scenario description (family, cooking), Controls, Time limit (and that it starts on reading the recipe) and instructions to next screen(tablet)
+Tablet: Instructions to memorize the required ingredients and move on to the shelf
+Shelf: Dragging the required ingredients into the inventory slos with the mouse 
+Pot: Dragging the required ingredients into the pot in the correct order, then pressing the cooking button
 
 
 ## Game logic
