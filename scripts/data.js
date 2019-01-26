@@ -5,8 +5,9 @@ class GameData {
     this.TABLE_Y = 690;
     this.scene_list = {
       MAIN: 'Main',
-      TABLET: 'Tablet'
-    }
+      TABLET: 'Tablet',
+      SHELVE: 'Shelve'
+    };
   }
 }
 
