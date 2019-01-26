@@ -1,15 +1,15 @@
 let player;
 let controls;
 let blocks;
-let tablet;
 
 class MainScene extends Phaser.Scene {
   constructor() {
     super({key: game_data.scene_list.MAIN});
   }
 
-  openTablet(player, tablet) {
+  openTablet() {
     player.setTint(0xff0000);
+    this.scene.start(game_data.scene_list.TABLET, 'hello from table');
   }
 
   preload() {
@@ -40,9 +40,6 @@ class MainScene extends Phaser.Scene {
     player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
-    player.addEventListener('click', () => {
-      console.log(this);
-    });
 
     // Character Frame Set:
     // 0   1  2  3 [Base, Down]
@@ -87,7 +84,7 @@ class MainScene extends Phaser.Scene {
 
     this.physics.add.collider(player, blocks);
 
-    tablet = this.physics.add.group({
+    let tablet = this.physics.add.group({
       key: 'tablet',
       setXY: {
         x: 382,
@@ -95,7 +92,7 @@ class MainScene extends Phaser.Scene {
       }
     });
 
-    this.physics.add.collider(player, tablet, this.openTablet, null, this);
+    this.physics.add.collider(player, tablet, this.openTablet.bind(this));
 
     controls = this.input.keyboard.createCursorKeys();
   }
