@@ -35,10 +35,18 @@ class Main extends Phaser.Scene {
     blocks.create(400, 348, 'table');
     blocks.create(400, 508, 'hud');
 
+<<<<<<< HEAD
+    player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
+    
+    let table = blocks.children.entries[5];
+
+    let hud = blocks.children.entries[6];
+=======
     let table = blocks.children.entries[5];
     let hud = blocks.children.entries[6];
 
     player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
+>>>>>>> 1946cf00e5ac3f73d0241a71c5bc39568110b2f2
 
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
@@ -84,6 +92,8 @@ class Main extends Phaser.Scene {
     });
 
     this.physics.add.collider(player, [hud, table]);
+<<<<<<< HEAD
+=======
 
     tablet = this.physics.add.group({
       key: 'tablet',
@@ -94,6 +104,7 @@ class Main extends Phaser.Scene {
     });
 
     this.physics.add.collider(player, tablet, this.openRecipe, null, this);
+>>>>>>> 1946cf00e5ac3f73d0241a71c5bc39568110b2f2
 
     controls = this.input.keyboard.createCursorKeys();
   }
