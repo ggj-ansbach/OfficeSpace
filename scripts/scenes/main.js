@@ -90,7 +90,7 @@ class MainScene extends Phaser.Scene {
       }
     });
 
-    this.physics.add.collider(player, tablet, this.openRecipe, null, this);
+    this.physics.add.collider(player, tablet, this.openTablet, null, this);
 
     controls = this.input.keyboard.createCursorKeys();
   }
