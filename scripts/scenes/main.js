@@ -1,6 +1,7 @@
 let player;
 let controls;
 let blocks;
+let items;
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -25,7 +26,9 @@ class MainScene extends Phaser.Scene {
     this.load.image('itablet', '/assets/images/objects/itablet.png');
     this.load.image('ishelve', '/assets/images/objects/ishelve.png');
     this.load.image('hud', '/assets/images/objects/hud.png');
+    this.load.bitmapFont('carrier_command', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
+    this.load.spritesheet('household', '/assets/images/sprites/house_inside.png', {frameWidth: 54, frameHeight: 78});
   }
 
   create() {
@@ -34,15 +37,20 @@ class MainScene extends Phaser.Scene {
     blocks.create(400, 300, 'floor');
     blocks.create(786, 192, 'wall-right');
     blocks.create(400, 21, 'wall-top');
-    blocks.create(115, 38, 'shelve');
+    blocks.create(120, 38, 'shelve');
     blocks.create(737, 230, 'stove');
-    blocks.create(400, 348, 'table');
+    blocks.create(380, 348, 'table');
     blocks.create(400, 508, 'hud');
+    
+    // Add time text
+    let bmpText = this.add.bitmapText(100, 450, 'carrier_command','TIME', 20);
 
     // Player settings:
     player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
+    // items = this.add.sprite(100, 220, 'items');
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
+
 
     // Character Frame Set:
     // 0   1  2  3 [Base, Down]
