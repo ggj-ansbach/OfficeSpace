@@ -52,18 +52,13 @@ see below
 * Pasta
 * Ground Meat
 * ...Bread?
+* Tomatoes
 * Broccoli
-* Butter
-* Mint
 * Bird Parts
-* That ghastly root (ginger)
 * Bell Pepper
 * Purple Thing (Eggplant)
-* Flour
-* Onion
 * Cheese
-* Wine
-* Squash (Yellow Thing)
+
 
 ### optional:
 
@@ -80,10 +75,10 @@ We do a total of 5 Levels (if thats cool)
 ### Dish name / Recipe / Heat / Threshold:
 
 1. Pasta with Ragù alla bolognese / Pasta, Tomato, Ground Meat/ 4 / 3
-2. Ratatouille / Squash, Tomato, Zucchini, Eggplant/ 3 / 4
-3. Royal Grilled Cheese Sandwich / Bread, Cheese, Bread, Tomatoes, Mint / 4 / 4
-4. Stuffed Quail with "mystery" sauce / Butter, Flour, Mint, Wine, Bird parts, Bird parts, Bell pepper / 3 / 4 or 5
-5. Stu´s Asian Stew / Ground meat, Bird parts, onion, Broccoli, Ginger, Bell pepper / 5 / 5
+2. Gratinated Eggplant / Eggplant, Cheese, Cheese,Tomatoes / 3 / 4
+3. Royal Grilled Cheese Sandwich n´ Dip / Bread, Cheese, Cheese, Bread, Tomatoes / 4 / 4
+4. Stuffed Quail with "mystery" sauce / Bird parts, Bird parts, Bell pepper, Eggplant, Tomatoes / 3 / 4 or 5
+5. Stu´s Asian Stew / Ground meat, Bird parts, Onion, Broccoli, Ground Meat, Bell pepper / 5 / 5
 
 
 ### Scoring system:
