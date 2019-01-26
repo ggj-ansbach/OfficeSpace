@@ -5,7 +5,8 @@ const game = new Phaser.Game({
   height: 600,
   backgroundColor: "#4488AA",
   physics: {
-    default: "arcade"
+    default: "arcade",
+    debug: true
   },
   scene: [Main, TabletScene],
 });

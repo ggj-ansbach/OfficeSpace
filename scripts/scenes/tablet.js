@@ -4,11 +4,15 @@ class TabletScene extends Phaser.Scene {
     super({key: "TabletScene"});
   }
 
-  load () {
-    this.load.image('tablet', 'assets/tablet.png');
+  preload () {
+    this.load.image('tablet', '/assets/tablet.png');
   }
 
   create () {
-    let tablet = this.add.sprite(1366, 768, 'tablet');
+    let tablet = this.add.sprite(300, 368, 'tablet');
+    tablet.scaleX = 0.5
+    tablet.scaleY = 0.5
+    tablet.rotation = 1
+    console.log('table scene created');
   }
 }
