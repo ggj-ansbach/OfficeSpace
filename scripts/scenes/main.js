@@ -1,10 +1,15 @@
 let player;
 let controls;
 let blocks;
+let tablet;
 
 class Main extends Phaser.Scene {
   constructor() {
     super({key: "Main"});
+  }
+
+  openRecipe(player, tablet) {
+    player.setTint(0xff0000);
   }
 
   preload() {
@@ -13,7 +18,8 @@ class Main extends Phaser.Scene {
     this.load.image('wall-top', '/assets/images/backgrounds/wall-top.png');
     this.load.image('shelve', '/assets/images/objects/shelve.png');
     this.load.image('stove', '/assets/images/objects/stove.png');
-    this.load.image('table', '/assets/images/objects/Table_Small.png');
+    this.load.image('table', '/assets/images/objects/table.png');
+    // this.load.image('tablet', '/assets/images/objects/tablet.png');
     this.load.image('hud', '/assets/images/objects/hud.png');
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
   }
@@ -29,11 +35,18 @@ class Main extends Phaser.Scene {
     blocks.create(400, 348, 'table');
     blocks.create(400, 508, 'hud');
 
+<<<<<<< HEAD
     player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
     
     let table = blocks.children.entries[5];
 
     let hud = blocks.children.entries[6];
+=======
+    let table = blocks.children.entries[5];
+    let hud = blocks.children.entries[6];
+
+    player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
+>>>>>>> 1946cf00e5ac3f73d0241a71c5bc39568110b2f2
 
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
@@ -79,6 +92,19 @@ class Main extends Phaser.Scene {
     });
 
     this.physics.add.collider(player, [hud, table]);
+<<<<<<< HEAD
+=======
+
+    tablet = this.physics.add.group({
+      key: 'tablet',
+      setXY: {
+        x: 382,
+        y: 325,
+      }
+    });
+
+    this.physics.add.collider(player, tablet, this.openRecipe, null, this);
+>>>>>>> 1946cf00e5ac3f73d0241a71c5bc39568110b2f2
 
     controls = this.input.keyboard.createCursorKeys();
   }
