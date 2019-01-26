@@ -17,7 +17,7 @@ class TabletScene extends Phaser.Scene {
     console.log("In the TabletScene");
     this.add.sprite(400 , 300, 'tablet');
 
-    let close = this.add.sprite(700, 80, 'close');
+    let close = this.add.sprite(755, 45, 'close');
     close.setInteractive();
     close.on('pointerdown', this.onDown.bind(this));
 

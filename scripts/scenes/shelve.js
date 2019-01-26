@@ -17,7 +17,8 @@ class ShelveScene extends Phaser.Scene {
     console.log("In the ShelveScene");
     this.add.sprite(400 , 300, 'shelf');
 
-    let close = this.add.sprite(675, 50, 'close').setScale(0.5);
+    let close = this.add.sprite(755, 45, 'close');
+
     close.setInteractive();
     close.on('pointerdown', this.onDown.bind(this));
 
