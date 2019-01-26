@@ -95,8 +95,7 @@ class MainScene extends Phaser.Scene {
       }
     });
 
-    this.physics.add.collider(player, tablet, this.openRecipe, null, this);
-    // this.scene.start(game_data.scene_list.TABLET, 'hello from table');
+    this.physics.add.collider(player, tablet, this.openTablet, null, this);
 
     controls = this.input.keyboard.createCursorKeys();
   }
@@ -123,9 +122,5 @@ class MainScene extends Phaser.Scene {
       player.setVelocityY(0);
       player.anims.play('turn', true);
     }
-  }
-
-  loadTablet () {
-    console.log(this);
   }
 }
