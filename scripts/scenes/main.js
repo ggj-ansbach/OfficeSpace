@@ -8,7 +8,7 @@ class Main extends Phaser.Scene {
     super({key: "Main"});
   }
 
-  openRecipe(player, tablet) {
+  openTablet(player, tablet) {
     player.setTint(0xff0000);
   }
 
@@ -19,7 +19,7 @@ class Main extends Phaser.Scene {
     this.load.image('shelve', '/assets/images/objects/shelve.png');
     this.load.image('stove', '/assets/images/objects/stove.png');
     this.load.image('table', '/assets/images/objects/table.png');
-    // this.load.image('tablet', '/assets/images/objects/tablet.png');
+    this.load.image('tablet', '/assets/images/objects/tablet.png');
     this.load.image('hud', '/assets/images/objects/hud.png');
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
   }
@@ -35,18 +35,7 @@ class Main extends Phaser.Scene {
     blocks.create(400, 348, 'table');
     blocks.create(400, 508, 'hud');
 
-<<<<<<< HEAD
     player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
-    
-    let table = blocks.children.entries[5];
-
-    let hud = blocks.children.entries[6];
-=======
-    let table = blocks.children.entries[5];
-    let hud = blocks.children.entries[6];
-
-    player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
->>>>>>> 1946cf00e5ac3f73d0241a71c5bc39568110b2f2
 
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
@@ -91,9 +80,13 @@ class Main extends Phaser.Scene {
       frameRate: 10
     });
 
+<<<<<<< 53c9ac639aa51202162f58c80f3307e233ba0010
     this.physics.add.collider(player, [hud, table]);
 <<<<<<< HEAD
 =======
+=======
+    this.physics.add.collider(player, blocks);
+>>>>>>> Restore tablet image
 
     tablet = this.physics.add.group({
       key: 'tablet',
@@ -103,8 +96,12 @@ class Main extends Phaser.Scene {
       }
     });
 
+<<<<<<< 53c9ac639aa51202162f58c80f3307e233ba0010
     this.physics.add.collider(player, tablet, this.openRecipe, null, this);
 >>>>>>> 1946cf00e5ac3f73d0241a71c5bc39568110b2f2
+=======
+    this.physics.add.collider(player, tablet, this.openTablet, null, this);
+>>>>>>> Restore tablet image
 
     controls = this.input.keyboard.createCursorKeys();
   }
