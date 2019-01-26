@@ -7,9 +7,8 @@ class MainScene extends Phaser.Scene {
     super({key: game_data.scene_list.MAIN});
   }
 
-  openTablet() {
-    player.setTint(0xff0000);
-    this.scene.start(game_data.scene_list.TABLET, 'hello from table');
+  openITablet() {
+    this.scene.start(game_data.scene_list.TABLET, {});
   }
 
   preload() {
@@ -19,14 +18,13 @@ class MainScene extends Phaser.Scene {
     this.load.image('shelve', '/assets/images/objects/shelve.png');
     this.load.image('stove', '/assets/images/objects/stove.png');
     this.load.image('table', '/assets/images/objects/table.png');
-    this.load.image('tablet', '/assets/images/objects/tablet.png');
+    this.load.image('itablet', '/assets/images/objects/itablet.png');
     this.load.image('hud', '/assets/images/objects/hud.png');
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
   }
 
   create() {
-
-    // Create a group of kitchen objects
+    // Create a group of kitchen objects:
     blocks = this.physics.add.staticGroup();
     blocks.create(400, 300, 'floor');
     blocks.create(786, 192, 'wall-right');
@@ -36,7 +34,7 @@ class MainScene extends Phaser.Scene {
     blocks.create(400, 348, 'table');
     blocks.create(400, 508, 'hud');
 
-    // Player settings
+    // Player settings:
     player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
@@ -47,6 +45,7 @@ class MainScene extends Phaser.Scene {
     // 8   9 10 11 [Right]
     // 12 13 14 15 [Up
 
+    // Animate player:
     this.anims.create({
       key: 'up',
       frames: this.anims.generateFrameNumbers('chef', {start: 12, end: 15}),
@@ -82,18 +81,21 @@ class MainScene extends Phaser.Scene {
     });
 
 
+    // Group player and blocks for collision:
     this.physics.add.collider(player, blocks);
 
-    let tablet = this.physics.add.group({
-      key: 'tablet',
+    let itablet = this.physics.add.group({
+      key: 'itablet',
       setXY: {
         x: 382,
         y: 325,
       }
     });
 
-    this.physics.add.collider(player, tablet, this.openTablet.bind(this));
+    // Callback for player and tablet:
+    this.physics.add.collider(player, itablet, this.openITablet.bind(this));
 
+    // Define controls:
     controls = this.input.keyboard.createCursorKeys();
   }
 

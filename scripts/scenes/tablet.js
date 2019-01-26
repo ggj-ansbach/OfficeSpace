@@ -4,22 +4,27 @@ class TabletScene extends Phaser.Scene {
   }
 
   onDown () {
-    console.log("Going back to Main Scene");
-    this.scene.start(game_data.scene_list.MAIN, 'hello from table');
+    console.log("Going back to MainScene");
+    this.scene.start(game_data.scene_list.MAIN, {});
   }
 
   preload () {
-    this.load.image('tabletBG', '/assets/images/backgrounds/tablet.png');
+    this.load.image('tablet', '/assets/images/backgrounds/tablet.png');
     this.load.image('close', '/assets/images/objects/close.png');
   }
 
   create () {
-    console.log("In the Tablet scene");
-    this.add.sprite(400 , 300, 'tabletBG');
+    console.log("In the TabletScene");
+    this.add.sprite(400 , 300, 'tablet');
+
     let close = this.add.sprite(700, 80, 'close');
     close.setInteractive();
     close.on('pointerdown', this.onDown.bind(this));
-    // close.events.onInputDown.add(this.onDown, this);
+
+    this.input.keyboard.on("keyup_ESC", () => {
+      this.onDown();
+    }, this);
+
     console.log('TableScene created');
   }
 }
