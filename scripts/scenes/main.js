@@ -3,9 +3,9 @@ let controls;
 let blocks;
 let tablet;
 
-class Main extends Phaser.Scene {
+class MainScene extends Phaser.Scene {
   constructor() {
-    super({key: "Main"});
+    super({key: "MainScene"});
   }
 
   openTablet(player, tablet) {
@@ -80,13 +80,7 @@ class Main extends Phaser.Scene {
       frameRate: 10
     });
 
-<<<<<<< 53c9ac639aa51202162f58c80f3307e233ba0010
-    this.physics.add.collider(player, [hud, table]);
-<<<<<<< HEAD
-=======
-=======
     this.physics.add.collider(player, blocks);
->>>>>>> Restore tablet image
 
     tablet = this.physics.add.group({
       key: 'tablet',
@@ -96,12 +90,7 @@ class Main extends Phaser.Scene {
       }
     });
 
-<<<<<<< 53c9ac639aa51202162f58c80f3307e233ba0010
     this.physics.add.collider(player, tablet, this.openRecipe, null, this);
->>>>>>> 1946cf00e5ac3f73d0241a71c5bc39568110b2f2
-=======
-    this.physics.add.collider(player, tablet, this.openTablet, null, this);
->>>>>>> Restore tablet image
 
     controls = this.input.keyboard.createCursorKeys();
   }

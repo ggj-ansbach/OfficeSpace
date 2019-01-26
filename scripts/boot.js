@@ -3,8 +3,10 @@ const game = new Phaser.Game({
   width: 800,
   height: 600,
   physics: {
-    default: "arcade",
-    debug: true
+    default: "arcade"
   },
-  scene: [TabletScene],
+  scene: [
+    MainScene,
+    TabletScene
+  ],
 });
