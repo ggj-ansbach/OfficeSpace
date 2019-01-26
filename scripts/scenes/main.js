@@ -3,12 +3,12 @@ let controls;
 let blocks;
 let tablet;
 
-class Main extends Phaser.Scene {
+class MainScene extends Phaser.Scene {
   constructor() {
-    super({key: "Main"});
+    super({key: game_data.scene_list.MAIN});
   }
 
-  openRecipe(player, tablet) {
+  openTablet(player, tablet) {
     player.setTint(0xff0000);
   }
 
@@ -19,14 +19,15 @@ class Main extends Phaser.Scene {
     this.load.image('shelve', '/assets/images/objects/shelve.png');
     this.load.image('stove', '/assets/images/objects/stove.png');
     this.load.image('table', '/assets/images/objects/table.png');
-    // this.load.image('tablet', '/assets/images/objects/tablet.png');
+    this.load.image('tablet', '/assets/images/objects/tablet.png');
     this.load.image('hud', '/assets/images/objects/hud.png');
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
   }
 
   create() {
-    blocks = this.physics.add.staticGroup();
 
+    // Create a group of kitchen objects
+    blocks = this.physics.add.staticGroup();
     blocks.create(400, 300, 'floor');
     blocks.create(786, 192, 'wall-right');
     blocks.create(400, 21, 'wall-top');
@@ -35,21 +36,13 @@ class Main extends Phaser.Scene {
     blocks.create(400, 348, 'table');
     blocks.create(400, 508, 'hud');
 
-<<<<<<< HEAD
+    // Player settings
     player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
-    
-    let table = blocks.children.entries[5];
-
-    let hud = blocks.children.entries[6];
-=======
-    let table = blocks.children.entries[5];
-    let hud = blocks.children.entries[6];
-
-    player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
->>>>>>> 1946cf00e5ac3f73d0241a71c5bc39568110b2f2
-
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
+    player.addEventListener('click', () => {
+      console.log(this);
+    });
 
     // Character Frame Set:
     // 0   1  2  3 [Base, Down]
@@ -91,9 +84,8 @@ class Main extends Phaser.Scene {
       frameRate: 10
     });
 
-    this.physics.add.collider(player, [hud, table]);
-<<<<<<< HEAD
-=======
+
+    this.physics.add.collider(player, blocks);
 
     tablet = this.physics.add.group({
       key: 'tablet',
@@ -104,7 +96,7 @@ class Main extends Phaser.Scene {
     });
 
     this.physics.add.collider(player, tablet, this.openRecipe, null, this);
->>>>>>> 1946cf00e5ac3f73d0241a71c5bc39568110b2f2
+    // this.scene.start(game_data.scene_list.TABLET, 'hello from table');
 
     controls = this.input.keyboard.createCursorKeys();
   }
@@ -131,5 +123,9 @@ class Main extends Phaser.Scene {
       player.setVelocityY(0);
       player.anims.play('turn', true);
     }
+  }
+
+  loadTablet () {
+    console.log(this);
   }
 }
