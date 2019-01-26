@@ -25,7 +25,7 @@ class Main extends Phaser.Scene {
     blocks.create(786, 192, 'wall-right');
     blocks.create(400, 21, 'wall-top');
     blocks.create(115, 38, 'shelve');
-    blocks.create(732, 178, 'stove');
+    blocks.create(737, 230, 'stove');
     blocks.create(420, 348, 'table');
     blocks.create(400, 508, 'hud');
 
@@ -81,16 +81,16 @@ class Main extends Phaser.Scene {
 
   update() {
     if (controls.up.isDown) {
-      player.setVelocityY(-180);
+      player.setVelocityY(-360);
       player.anims.play('up', true);
     } else if (controls.down.isDown) {
-      player.setVelocityY(180);
+      player.setVelocityY(360);
       player.anims.play('down', true);
     } else if (controls.left.isDown) {
-      player.setVelocityX(-180);
+      player.setVelocityX(-360);
       player.anims.play('left', true);
     } else if (controls.right.isDown) {
-      player.setVelocityX(180);
+      player.setVelocityX(360);
       player.anims.play('right', true);
     } else {
       player.setVelocityX(0);
