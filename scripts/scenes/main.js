@@ -8,15 +8,24 @@ class Main extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('pane', '/assets/pane.jpg');
-    this.load.image('shelve', '/assets/shelve.jpg');
-    this.load.image('table', '/assets/table.jpg');
-    this.load.image('stove', '/assets/stove.jpg');
+    this.load.image('floor', '/assets/floor.png');
+    this.load.image('hud', '/assets/hud.png');
+    this.load.image('shelve', '/assets/shelve.png');
+    this.load.image('table', '/assets/table.png');
+    this.load.image('stove', '/assets/stove.png');
     this.load.spritesheet('dude', '/assets/dude.png', {frameWidth: 32, frameHeight: 48});
   }
 
   create() {
-    player = this.physics.add.sprite(150, 392, 'dude');
+    blocks = this.physics.add.staticGroup();
+
+    blocks.create(400, 300, 'floor');
+    blocks.create(400, 508, 'hud');
+    blocks.create(118, 38, 'shelve');
+    blocks.create(420, 348, 'table');
+    blocks.create(732, 178, 'stove');
+
+    player = this.physics.add.sprite(150, 325, 'dude').setScale(2);
 
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
@@ -40,13 +49,6 @@ class Main extends Phaser.Scene {
       frames: [{key: 'dude', frame: 4}],
       frameRate: 10
     });
-
-    blocks = this.physics.add.staticGroup();
-
-    blocks.create(400, 508, 'pane');
-    blocks.create(118, 38, 'shelve');
-    blocks.create(420, 348, 'table');
-    blocks.create(732, 178, 'stove');
 
     this.physics.add.collider(player, blocks);
 
