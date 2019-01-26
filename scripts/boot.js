@@ -8,5 +8,5 @@ const game = new Phaser.Game({
     default: "arcade",
     debug: true
   },
-  scene: [Main, TabletScene],
+  scene: [TabletScene],
 });
