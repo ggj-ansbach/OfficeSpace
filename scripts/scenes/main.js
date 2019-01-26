@@ -8,7 +8,6 @@ class Main extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('placeholder', '/assets/placeholder.jpg');
     this.load.image('pane', '/assets/pane.jpg');
     this.load.image('shelve', '/assets/shelve.jpg');
     this.load.image('table', '/assets/table.jpg');
@@ -17,11 +16,10 @@ class Main extends Phaser.Scene {
   }
 
   create() {
-    // this.add.image(400, 300, 'placeholder');
-
     player = this.physics.add.sprite(150, 392, 'dude');
 
     player.body.allowGravity = false;
+    player.setCollideWorldBounds(true);
 
     this.anims.create({
       key: 'left',
