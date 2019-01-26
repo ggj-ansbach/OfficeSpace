@@ -6,6 +6,7 @@ class TabletScene extends Phaser.Scene {
 
   load () {
     this.load.image('tablet', 'assets/tablet.png');
+    console.log('table scene created');
   }
 
   create () {

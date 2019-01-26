@@ -9,7 +9,9 @@ class Main extends Phaser.Scene {
 
   preload() {
     this.load.image('floor', '/assets/floor.png');
-    this.load.image('hud', '/assets/hud.png');
+    let hud = this.load.image('hud', '/assets/hud.png');
+    hud.scaleX = 0.5
+    hud.scaleY = 0.5
     this.load.image('shelve', '/assets/shelve.png');
     this.load.image('table', '/assets/table.png');
     this.load.image('stove', '/assets/stove.png');

@@ -1,6 +1,6 @@
 
 const game = new Phaser.Game({
-  type: Phaser.AUTO,
+  type: Phaser.DOM.FIT,
   width: 800,
   height: 600,
   backgroundColor: "#4488AA",
