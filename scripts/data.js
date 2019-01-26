@@ -6,9 +6,10 @@ class GameData {
     this.scene_list = {
       MAIN: 'Main',
       TABLET: 'Tablet',
-      MENU: 'Menu'
+      MENU: 'Menu',
+      SHELVE: 'Shelve'
+    };
     }
-  }
 }
 
 // eslint-disable-next-line no-unused-vars

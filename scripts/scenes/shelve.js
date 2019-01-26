@@ -1,6 +1,6 @@
-class TabletScene extends Phaser.Scene {
+class ShelveScene extends Phaser.Scene {
   constructor () {
-    super({key: game_data.scene_list.TABLET});
+    super({key: game_data.scene_list.SHELVE});
   }
 
   onDown () {
@@ -9,15 +9,16 @@ class TabletScene extends Phaser.Scene {
   }
 
   preload () {
-    this.load.image('tablet', '/assets/images/backgrounds/tablet.png');
+    this.load.image('shelf', '/assets/images/backgrounds/shelf.png');
     this.load.image('close', '/assets/images/objects/close.png');
   }
 
   create () {
-    console.log("In the TabletScene");
-    this.add.sprite(400 , 300, 'tablet');
+    console.log("In the ShelveScene");
+    this.add.sprite(400 , 300, 'shelf');
 
     let close = this.add.sprite(755, 45, 'close');
+
     close.setInteractive();
     close.on('pointerdown', this.onDown.bind(this));
 
@@ -25,6 +26,6 @@ class TabletScene extends Phaser.Scene {
       this.onDown();
     }, this);
 
-    console.log('TabletScene created');
+    console.log('ShelveScene created');
   }
 }
