@@ -7,7 +7,7 @@ class Main extends Phaser.Scene {
     super({key: "Main"});
   }
 
-  preload() {
+  preload () {
     this.load.image('placeholder', '/assets/placeholder.jpg');
     this.load.image('pane', '/assets/pane.jpg');
     this.load.image('shelve', '/assets/shelve.jpg');
@@ -16,12 +16,11 @@ class Main extends Phaser.Scene {
     this.load.spritesheet('dude', '/assets/dude.png', {frameWidth: 32, frameHeight: 48});
   }
 
-  create() {
-    // this.add.image(400, 300, 'placeholder');
-
+  create () {
     player = this.physics.add.sprite(150, 392, 'dude');
 
     player.body.allowGravity = false;
+    player.body.collideWorldBounds = true;
 
     this.anims.create({
       key: 'left',

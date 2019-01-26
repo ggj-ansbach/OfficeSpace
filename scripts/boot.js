@@ -1,14 +1,14 @@
-const config = {
+
+const game = new Phaser.Game({
   type: Phaser.AUTO,
   width: 800,
   height: 600,
+  backgroundColor: "#4488AA",
   physics: {
     default: "arcade",
     arcade: {
       gravity: {y: 200}
     },
   },
-  scene: [Main],
-};
-
-const game = new Phaser.Game(config);
+  scene: [Main, TabletScene],
+});
