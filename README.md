@@ -93,7 +93,7 @@ We do a total of 5 Levels (if thats cool)
 1. Create 3 arrays. The first contains the ingredients the player put into the pot. The second and third have the required ingredients in order. 
 2. Iterate over the first array, and check if the corresponding indizes are the same item (for checking the correct order. array1[0] == array2[0], array1[1] == array2[2].. etc.). If the items are the same, do nothing. If they are not, lower Score by -0.5. Beware of null entries not being the same as other null entries! I dont know what js is returning there. 
 3. Per item of the first array iterated, look if the third array contains the wanted item. If it does, raise score by +1 and remove the item from the third array. If an item from the first array is not found in the third array while iterating, lower score by -1.
-
+4. Compare the final score to the score threshold of the dish of the level
 
 
 # Running the project
