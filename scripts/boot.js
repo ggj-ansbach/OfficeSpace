@@ -5,10 +5,7 @@ const game = new Phaser.Game({
   height: 600,
   backgroundColor: "#4488AA",
   physics: {
-    default: "arcade",
-    arcade: {
-      gravity: {y: 200}
-    },
+    default: "arcade"
   },
   scene: [Main, TabletScene],
 });
