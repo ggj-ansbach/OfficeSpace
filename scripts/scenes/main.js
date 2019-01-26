@@ -15,7 +15,7 @@ class Main extends Phaser.Scene {
     this.load.image('shelve', '/assets/shelve.png');
     this.load.image('table', '/assets/table.png');
     this.load.image('stove', '/assets/stove.png');
-    this.load.spritesheet('dude', '/assets/dude.png', {frameWidth: 32, frameHeight: 48});
+    this.load.spritesheet('chef', '/assets/chef.png', {frameWidth: 54, frameHeight: 78});
   }
 
   create() {
@@ -27,28 +27,48 @@ class Main extends Phaser.Scene {
     blocks.create(420, 348, 'table');
     blocks.create(732, 178, 'stove');
 
-    player = this.physics.add.sprite(150, 325, 'dude').setScale(2);
+    player = this.physics.add.sprite(150, 325, 'chef').setScale(2);
 
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
 
+    // Character Frame Set:
+    // 0   1  2  3 [Base, Down]
+    // 4   5  6  7 [Left]
+    // 8   9 10 11 [Right]
+    // 12 13 14 15 [Up
+
+    this.anims.create({
+      key: 'up',
+      frames: this.anims.generateFrameNumbers('chef', {start: 12, end: 15}),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'down',
+      frames: this.anims.generateFrameNumbers('chef', {start: 0,  end: 3}),
+      frameRate: 10,
+      repeat: -1
+    });
+
     this.anims.create({
       key: 'left',
-      frames: this.anims.generateFrameNumbers('dude', {start: 0, end: 3}),
+      frames: this.anims.generateFrameNumbers('chef', {start: 4, end: 7}),
       frameRate: 10,
       repeat: -1
     });
 
     this.anims.create({
       key: 'right',
-      frames: this.anims.generateFrameNumbers('dude', {start: 5, end: 8}),
+      frames: this.anims.generateFrameNumbers('chef', {start: 8, end: 11}),
       frameRate: 10,
       repeat: -1
     });
 
     this.anims.create({
       key: 'turn',
-      frames: [{key: 'dude', frame: 4}],
+      frames: [{key: 'chef', frame: 0}],
       frameRate: 10
     });
 
@@ -58,18 +78,18 @@ class Main extends Phaser.Scene {
   }
 
   update() {
-    if (controls.left.isDown) {
-      player.setVelocityX(-180);
-      player.anims.play('left', true);
-    } else if (controls.right.isDown) {
-      player.setVelocityX(180);
-      player.anims.play('right', true);
-    } else if (controls.up.isDown) {
+    if (controls.up.isDown) {
       player.setVelocityY(-180);
       player.anims.play('up', true);
     } else if (controls.down.isDown) {
       player.setVelocityY(180);
       player.anims.play('down', true);
+    } else if (controls.left.isDown) {
+      player.setVelocityX(-180);
+      player.anims.play('left', true);
+    } else if (controls.right.isDown) {
+      player.setVelocityX(180);
+      player.anims.play('right', true);
     } else {
       player.setVelocityX(0);
       player.setVelocityY(0);
