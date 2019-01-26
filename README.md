@@ -94,7 +94,7 @@ We do a total of 5 Levels (if thats cool)
   
   Compared to threshold of the level. If lower -> repeat level
 
-# Runnign the project
+# Running the project
 
 * Install Python interpreter (Make sure it is in $PATH if windows)
 * If it is Python 2 open terminal/command prompt and run
