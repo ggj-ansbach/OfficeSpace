@@ -27,13 +27,17 @@ see below
 * Fire effect for burned hand
 * burned hand cursor
 * cheering sound for successfully cooked meal
+* Disappointed sound for unsuccessful meal
 * happy family (part of successful score screen)
 * unhappy family / lonely dude (part of losing screen)
 		
 #### Sound: 
 * Gulp sound effect for dropping into the pot
-* Rattling sound for picking up ingredients
-* page turning sound for opening up the tablet 
+* Rattling sound for starting shelf screen
+* Page turning sound for opening up the tablet 
+* Boiling background sound for Pot screen
+* Pickup sound for Shelf items
+
 			 
 
 ## Hardships: 
