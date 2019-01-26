@@ -8,24 +8,28 @@ class Main extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('floor', '/assets/floor.png');
-    this.load.image('hud', '/assets/hud.png');
-    this.load.image('shelve', '/assets/shelve.png');
-    this.load.image('table', '/assets/table.png');
-    this.load.image('stove', '/assets/stove.png');
-    this.load.spritesheet('chef', '/assets/chef.png', {frameWidth: 54, frameHeight: 78});
+    this.load.image('floor', '/assets/images/backgrounds/floor.png');
+    this.load.image('wall-right', '/assets/images/backgrounds/wall-right.png');
+    this.load.image('wall-top', '/assets/images/backgrounds/wall-top.png');
+    this.load.image('shelve', '/assets/images/objects/shelve.png');
+    this.load.image('stove', '/assets/images/objects/stove.png');
+    this.load.image('table', '/assets/images/objects/table.png');
+    this.load.image('hud', '/assets/images/objects/hud.png');
+    this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
   }
 
   create() {
     blocks = this.physics.add.staticGroup();
 
     blocks.create(400, 300, 'floor');
-    blocks.create(400, 508, 'hud');
-    blocks.create(118, 38, 'shelve');
-    blocks.create(420, 348, 'table');
+    blocks.create(786, 192, 'wall-right');
+    blocks.create(400, 21, 'wall-top');
+    blocks.create(115, 38, 'shelve');
     blocks.create(732, 178, 'stove');
+    blocks.create(420, 348, 'table');
+    blocks.create(400, 508, 'hud');
 
-    player = this.physics.add.sprite(150, 325, 'chef').setScale(2);
+    player = this.physics.add.sprite(150, 325, 'chef').setScale(1.75);
 
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
