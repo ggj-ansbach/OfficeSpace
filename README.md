@@ -93,3 +93,15 @@ We do a total of 5 Levels (if thats cool)
 * wrong order item: -0.5
   
   Compared to threshold of the level. If lower -> repeat level
+
+# Running the project
+
+* Install Python interpreter (Make sure it is in $PATH if windows)
+* If it is Python 2 open terminal/command prompt and run
+   `python -m SimpleHTTPServer`
+* Or if interpreter is Python 3, run
+   `python3 -m http.server`
+
+Now it should start a server at http://localhost:8000
+
+Run that terminal in background. Whenever you make any changes to code, refresh the browser!
