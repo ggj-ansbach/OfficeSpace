@@ -82,15 +82,19 @@ class Main extends Phaser.Scene {
   update() {
     if (controls.up.isDown) {
       player.setVelocityY(-360);
+      player.setVelocityX(0);
       player.anims.play('up', true);
     } else if (controls.down.isDown) {
       player.setVelocityY(360);
+      player.setVelocityX(0);
       player.anims.play('down', true);
     } else if (controls.left.isDown) {
       player.setVelocityX(-360);
+      player.setVelocityY(0);
       player.anims.play('left', true);
     } else if (controls.right.isDown) {
       player.setVelocityX(360);
+      player.setVelocityY(0);
       player.anims.play('right', true);
     } else {
       player.setVelocityX(0);
