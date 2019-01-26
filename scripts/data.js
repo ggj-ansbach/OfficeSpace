@@ -3,6 +3,10 @@ class GameData {
   constructor () {
     this.TABLE_X = 630;
     this.TABLE_Y = 690;
+    this.scene_list = {
+      MAIN: 'Main',
+      TABLET: 'Tablet'
+    }
   }
 }
 

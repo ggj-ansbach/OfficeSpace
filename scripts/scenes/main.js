@@ -1,15 +1,15 @@
 let player;
 let controls;
 let blocks;
-let tablet;
 
 class MainScene extends Phaser.Scene {
   constructor() {
-    super({key: "MainScene"});
+    super({key: game_data.scene_list.MAIN});
   }
 
-  openTablet(player, tablet) {
+  openTablet() {
     player.setTint(0xff0000);
+    this.scene.start(game_data.scene_list.TABLET, 'hello from table');
   }
 
   preload() {
@@ -25,8 +25,9 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
-    blocks = this.physics.add.staticGroup();
 
+    // Create a group of kitchen objects
+    blocks = this.physics.add.staticGroup();
     blocks.create(400, 300, 'floor');
     blocks.create(786, 192, 'wall-right');
     blocks.create(400, 21, 'wall-top');
@@ -35,8 +36,8 @@ class MainScene extends Phaser.Scene {
     blocks.create(400, 348, 'table');
     blocks.create(400, 508, 'hud');
 
+    // Player settings
     player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
-
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
 
@@ -80,9 +81,10 @@ class MainScene extends Phaser.Scene {
       frameRate: 10
     });
 
+
     this.physics.add.collider(player, blocks);
 
-    tablet = this.physics.add.group({
+    let tablet = this.physics.add.group({
       key: 'tablet',
       setXY: {
         x: 382,
@@ -90,7 +92,7 @@ class MainScene extends Phaser.Scene {
       }
     });
 
-    this.physics.add.collider(player, tablet, this.openTablet, null, this);
+    this.physics.add.collider(player, tablet, this.openTablet.bind(this));
 
     controls = this.input.keyboard.createCursorKeys();
   }
