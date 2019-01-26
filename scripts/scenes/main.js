@@ -9,13 +9,12 @@ class Main extends Phaser.Scene {
 
   preload() {
     this.load.image('floor', '/assets/floor.png');
-    let hud = this.load.image('hud', '/assets/hud.png');
-    hud.scaleX = 0.5
-    hud.scaleY = 0.5
+    this.load.image('hud', '/assets/hud.png');
     this.load.image('shelve', '/assets/shelve.png');
     this.load.image('table', '/assets/table.png');
     this.load.image('stove', '/assets/stove.png');
     this.load.spritesheet('chef', '/assets/chef.png', {frameWidth: 54, frameHeight: 78});
+    this.load.spritesheet('house', '/assets/house_inside.png', {frameWidth: 54, frameHeight: 78})
   }
 
   create() {
@@ -24,10 +23,19 @@ class Main extends Phaser.Scene {
     blocks.create(400, 300, 'floor');
     blocks.create(400, 508, 'hud');
     blocks.create(118, 38, 'shelve');
-    blocks.create(420, 348, 'table');
+    blocks.create(380, 348, 'table');
     blocks.create(732, 178, 'stove');
 
-    player = this.physics.add.sprite(150, 325, 'chef').setScale(2);
+    let hud = blocks.children.entries[1];
+    let table = blocks.children.entries[3];
+    let objects = this.add.sprite(200, 420, 'objects');
+    objects.frame = 1;
+
+    hud.scaleY = 0.5
+    table.scaleX = 0.5;
+    table.scaleY = 0.5;
+
+    player = this.physics.add.sprite(150, 325, 'chef');
 
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
