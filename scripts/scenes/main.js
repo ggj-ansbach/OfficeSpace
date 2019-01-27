@@ -9,17 +9,24 @@ class MainScene extends Phaser.Scene {
   }
 
   openITablet(sound) {
-    sound.play();
-    this.scene.start(game_data.scene_list.TABLET, {});
+    this.input.keyboard.on("keyup_SPACE", () => {
+      sound.play();
+      this.scene.start(game_data.scene_list.TABLET, {});
+    }, this);
   }
 
   openIShelve(sound) {
-    sound.play();
-    this.scene.start(game_data.scene_list.SHELVE, {});
+    this.input.keyboard.on("keyup_SPACE", () => {
+      sound.play();
+      this.scene.start(game_data.scene_list.SHELVE, {});
+    }, this);
   }
 
-  openIStove() {
-    this.scene.start(game_data.scene_list.STOVE, {});
+  openIStove(sound) {
+    this.input.keyboard.on("keyup_SPACE", () => {
+      sound.play();
+      this.scene.start(game_data.scene_list.STOVE, {});
+    }, this);
   }
 
   preload() {
