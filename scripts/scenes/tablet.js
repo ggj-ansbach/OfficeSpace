@@ -1,11 +1,14 @@
 class TabletScene extends Phaser.Scene {
   constructor () {
     super({key: game_data.scene_list.TABLET});
+    this.recipes_level1 = ['Bell Pepper', 'Tomato', 'Tomato', 'Bread', 'Cheese'];
   }
 
   onDown () {
     console.log("Going back to MainScene");
-    this.scene.start(game_data.scene_list.MAIN, {});
+    this.scene.stop();
+    this.scene.start(game_data.scene_list.MAIN);
+    game.sound.stopAll();
   }
 
   preload () {
@@ -15,6 +18,7 @@ class TabletScene extends Phaser.Scene {
   }
 
   create () {
+    debugger
     let blocks = this.physics.add.staticGroup();
     blocks.create(400 , 300, 'tablet');
     let note = blocks.create(270, 294, 'note').setScale(0.17, 0.15); // sprite is so big
@@ -23,6 +27,15 @@ class TabletScene extends Phaser.Scene {
     timerHeader = this.add.bitmapText(600, 360, 'carrier_command', 'TIME', 20);
     timerValue = this.add.bitmapText(595, 410, 'carrier_command', timerInitValue, 40);
     timerText = this.add.bitmapText(685, 430, 'carrier_command', 's', 20);
+
+    let noteX = note.x - 100;
+    let noteY = note.y - 150;
+    let temp;
+    for (let recipe of this.recipes_level1) {
+      noteY += 50;
+      temp = this.add.bitmapText(noteX, noteY, 'carrier_command', recipe, 20);
+      temp.tint = 'red'
+    }
     
     // Create close after tablet, otherwise backgroudn may cover close
     let close = this.add.sprite(755, 45, 'close');

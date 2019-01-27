@@ -1,6 +1,4 @@
-let player;
 let controls;
-let blocks;
 let items;
 let tablet_open;
 let shelve_open;
@@ -17,30 +15,35 @@ let timer;
 class MainScene extends Phaser.Scene {
   constructor() {
     super({key: game_data.scene_list.MAIN});
+    let blocks;
+    let player;
+    let tablet_direction;
+    let stove_direction;
+    let shelve_direction;
   }
 
-  openITablet(sound) {
-    this.input.keyboard.on("keyup_SPACE", () => {
-      game.sound.stopAll();
-      sound.play();
-      this.scene.start(game_data.scene_list.TABLET, {});
-    }, this);
+  checkOverlap(spriteA, spriteB) {
+    let boundsA = spriteA.getBounds();
+    let boundsB = spriteB.getBounds();
+    return Phaser.Geom.Rectangle.ContainsPoint(boundsA, boundsB);
   }
 
-  openIShelve(sound) {
-    this.input.keyboard.on("keyup_SPACE", () => {
+  openTablet(sound) {
       game.sound.stopAll();
       sound.play();
-      this.scene.start(game_data.scene_list.SHELVE, {});
-    }, this);
+      this.scene.switch(game_data.scene_list.TABLET, {});
   }
 
-  openIStove(sound) {
-    this.input.keyboard.on("keyup_SPACE", () => {
+  openShelve(sound) {
       game.sound.stopAll();
       sound.play();
-      this.scene.start(game_data.scene_list.STOVE, {});
-    }, this);
+      this.scene.switch(game_data.scene_list.SHELVE, {});
+  }
+
+  openStove(sound) {
+      game.sound.stopAll();
+      sound.play();
+      this.scene.switch(game_data.scene_list.STOVE, {});
   }
 
   preload() {
@@ -54,6 +57,8 @@ class MainScene extends Phaser.Scene {
     this.load.image('ishelve', '/assets/images/objects/ishelve.png');
     this.load.image('istove', '/assets/images/objects/istove.png');
     this.load.image('hud', '/assets/images/objects/hud.png');
+    this.load.image('arrow', '/assets/images/objects/arrow.png');
+
     this.load.bitmapFont('carrier_command', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
     this.load.audio('shelve_open', 'assets/sounds/cabinet_open.mp3');
@@ -63,14 +68,18 @@ class MainScene extends Phaser.Scene {
 
   create() {
     // Create a group of kitchen objects:
-    blocks = this.physics.add.staticGroup();
-    blocks.create(400, 300, 'floor');
-    blocks.create(786, 192, 'wall-right');
-    blocks.create(400, 21, 'wall-top');
-    blocks.create(120, 38, 'shelve');
-    blocks.create(737, 230, 'stove');
-    blocks.create(380, 348, 'table');
-    blocks.create(400, 508, 'hud');
+    this.blocks = this.physics.add.staticGroup();
+    this.blocks.create(400, 300, 'floor');
+    this.blocks.create(786, 192, 'wall-right');
+    this.blocks.create(400, 21, 'wall-top');
+    this.blocks.create(120, 38, 'shelve');
+    this.blocks.create(737, 230, 'stove');
+    this.blocks.create(380, 348, 'table');
+    this.blocks.create(400, 508, 'hud');
+
+    this.tablet_direction = this.add.sprite(370, 270, 'arrow').setAngle(90).setScale(0.8);
+    this.shelve_direction = this.add.sprite(120, 100, 'arrow').setAngle(-90).setScale(0.8);
+    this.stove_direction = this.add.sprite(650, 230, 'arrow').setAngle(0).setScale(0.8);
     
     // Add time text
     timerHeader = this.add.bitmapText(105, 460, 'carrier_command', 'TIME', 20);
@@ -78,11 +87,11 @@ class MainScene extends Phaser.Scene {
     timerValue = this.add.bitmapText(100, 510, 'carrier_command', timerInitValue, 40);
     timerText = this.add.bitmapText(190, 530, 'carrier_command', 's', 20);
 
-    // Player settings:
-    player = this.physics.add.sprite(game_data.coordinatesX, game_data.coordinatesY, 'chef').setScale(1.25);
+    // this.player settings:
+    this.player = this.physics.add.sprite(game_data.coordinatesX, game_data.coordinatesY, 'chef').setScale(1.25);
     // items = this.add.sprite(100, 220, 'items');
-    player.body.allowGravity = false;
-    player.setCollideWorldBounds(true);
+    this.player.body.allowGravity = false;
+    this.player.setCollideWorldBounds(true);
 
     shelve_open = this.sound.add('shelve_open');
     tablet_open = this.sound.add('tablet_open');
@@ -94,7 +103,7 @@ class MainScene extends Phaser.Scene {
     // 8   9 10 11 [Right]
     // 12 13 14 15 [Up
 
-    // Animate player:
+    // Animate this.player:
     this.anims.create({
       key: 'up',
       frames: this.anims.generateFrameNumbers('chef', {start: 12, end: 15}),
@@ -130,8 +139,8 @@ class MainScene extends Phaser.Scene {
     });
 
 
-    // Group player and blocks for collision:
-    this.physics.add.collider(player, blocks);
+    // Group this.player and this.blocks for collision:
+    this.physics.add.collider(this.player, this.blocks);
 
     itablet = this.physics.add.group({
       key: 'itablet',
@@ -157,39 +166,49 @@ class MainScene extends Phaser.Scene {
       }
     });
 
-    // Callback for player and invisible objects:
-    this.physics.add.collider(player, itablet, this.openITablet.bind(this, tablet_open));
-    this.physics.add.collider(player, ishelve, this.openIShelve.bind(this, shelve_open));
-    this.physics.add.collider(player, istove, this.openIStove.bind(this, stove_open));
+    // Callback for this.player and invisible objects:
+    this.physics.add.collider(this.player, itablet) ;
+    this.physics.add.collider(this.player, ishelve); 
+    this.physics.add.collider(this.player, istove);
 
+    this.input.keyboard.on("keyup_SPACE", () => {
+      if (this.checkOverlap(this.player, this.shelve_direction))  { // player & shelve
+          this.openShelve(shelve_open);
+      } else if(this.checkOverlap(this.player, this.tablet_direction)) { // player & tablet
+          this.openTablet(tablet_open);
+      } else if (this.checkOverlap(this.player, this.stove_direction)) { // player & stove
+          this.openStove(stove_open);
+      }
+
+    });
     // Define controls:
     controls = this.input.keyboard.createCursorKeys();
   }
 
   update() {
     if (controls.up.isDown) {
-      player.setVelocityY(-360);
-      player.setVelocityX(0);
-      player.anims.play('up', true);
+      this.player.setVelocityY(-160);
+      this.player.setVelocityX(0);
+      this.player.anims.play('up', true);
     } else if (controls.down.isDown) {
-      player.setVelocityY(360);
-      player.setVelocityX(0);
-      player.anims.play('down', true);
+      this.player.setVelocityY(160);
+      this.player.setVelocityX(0);
+      this.player.anims.play('down', true);
     } else if (controls.left.isDown) {
-      player.setVelocityX(-360);
-      player.setVelocityY(0);
-      player.anims.play('left', true);
+      this.player.setVelocityX(-160);
+      this.player.setVelocityY(0);
+      this.player.anims.play('left', true);
     } else if (controls.right.isDown) {
-      player.setVelocityX(360);
-      player.setVelocityY(0);
-      player.anims.play('right', true);
+      this.player.setVelocityX(160);
+      this.player.setVelocityY(0);
+      this.player.anims.play('right', true);
     } else {
-      player.setVelocityX(0);
-      player.setVelocityY(0);
-      player.anims.play('turn', true);
+      this.player.setVelocityX(0);
+      this.player.setVelocityY(0);
+      this.player.anims.play('turn', true);
     }
     
-    game_data.coordinatesX = player.x;
-    game_data.coordinatesY = player.y;
+    game_data.coordinatesX = this.player.x;
+    game_data.coordinatesY = this.player.y;
   }
 }
