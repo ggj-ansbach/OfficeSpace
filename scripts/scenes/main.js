@@ -18,6 +18,10 @@ class MainScene extends Phaser.Scene {
     this.scene.start(game_data.scene_list.SHELVE, {});
   }
 
+  openIStove() {
+    this.scene.start(game_data.scene_list.STOVE, {});
+  }
+
   preload() {
     this.load.image('floor', '/assets/images/backgrounds/floor.png');
     this.load.image('wall-right', '/assets/images/backgrounds/wall-right.png');
@@ -27,6 +31,7 @@ class MainScene extends Phaser.Scene {
     this.load.image('table', '/assets/images/objects/table.png');
     this.load.image('itablet', '/assets/images/objects/itablet.png');
     this.load.image('ishelve', '/assets/images/objects/ishelve.png');
+    this.load.image('istove', '/assets/images/objects/istove.png');
     this.load.image('hud', '/assets/images/objects/hud.png');
     this.load.bitmapFont('carrier_command', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
@@ -118,9 +123,18 @@ class MainScene extends Phaser.Scene {
       }
     });
 
+    let istove = this.physics.add.group({
+      key: 'istove',
+      setXY: {
+        x: 682,
+        y: 242,
+      }
+    });
+
     // Callback for player and invisible objects:
-    this.physics.add.collider(player, itablet, this.openITablet.bind(this, tablet_open));
-    this.physics.add.collider(player, ishelve, this.openIShelve.bind(this, shelve_open));
+    this.physics.add.collider(player, itablet, this.openITablet.bind(this));
+    this.physics.add.collider(player, ishelve, this.openIShelve.bind(this));
+    this.physics.add.collider(player, istove, this.openIStove.bind(this));
 
     // Define controls:
     controls = this.input.keyboard.createCursorKeys();
