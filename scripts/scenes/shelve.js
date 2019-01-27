@@ -37,6 +37,6 @@ class ShelveScene extends Phaser.Scene {
   }
 
   update() {
-    timerValue.text = timer;
+    timerValue.text = padLeft(timer);
   }
 }

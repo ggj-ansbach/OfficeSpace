@@ -151,7 +151,7 @@ class MainScene extends Phaser.Scene {
   }
 
   update() {
-    timerValue.text = timer;
+    timerValue.text = padLeft(timer);
 
     if (controls.up.isDown) {
       this.player.setVelocityY(-160);

@@ -22,6 +22,15 @@
     </head>
     <body>
         <script src="/scripts/vendor/phaser.min.js"></script>
+        <script>
+         function padLeft(n) {
+             if (n < 10) {
+                 return "0" + n;
+             }
+
+             return n;
+         }
+        </script>
         <script src="/scripts/data.js"></script>
         <script src="/scripts/scenes/menu.js"></script>
         <script src="/scripts/scenes/main.js"></script>
