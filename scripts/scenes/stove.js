@@ -10,6 +10,7 @@ class StoveScene extends Phaser.Scene {
 
   preload () {
     this.load.image('cook', '/assets/images/backgrounds/cook.png');
+    this.load.image('close', '/assets/images/objects/close.png');
   }
 
   create () {
