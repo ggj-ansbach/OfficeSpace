@@ -54,7 +54,7 @@ class MainScene extends Phaser.Scene {
     let bmpText = this.add.bitmapText(100, 450, 'carrier_command','TIME', 20);
 
     // Player settings:
-    player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
+    player = this.physics.add.sprite(game_data.coordinatesX, game_data.coordinatesY, 'chef').setScale(1.25);
     // items = this.add.sprite(100, 220, 'items');
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
@@ -162,5 +162,8 @@ class MainScene extends Phaser.Scene {
       player.setVelocityY(0);
       player.anims.play('turn', true);
     }
+    
+    game_data.coordinatesX = player.x;
+    game_data.coordinatesY = player.y;
   }
 }
