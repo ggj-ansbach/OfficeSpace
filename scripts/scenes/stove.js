@@ -36,6 +36,6 @@ class StoveScene extends Phaser.Scene {
   }
 
   update() {
-    timerValue.text = timer;
+    timerValue.text = padLeft(timer);
   }
 }
