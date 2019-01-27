@@ -16,6 +16,15 @@ class StoveScene extends Phaser.Scene {
     console.log("In the StoveScene");
     this.add.sprite(400 , 300, 'cook');
 
+    // Create close after tablet, otherwise backgroudn may cover close
+    let close = this.add.sprite(755, 45, 'close');
+    close.setInteractive();
+    close.on('pointerdown', this.onDown.bind(this));
+
+    this.input.keyboard.on("keyup_ESC", () => {
+      this.onDown();
+    }, this);
+
     console.log('StoveScene created');
   }
 }
