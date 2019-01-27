@@ -132,8 +132,8 @@ class MainScene extends Phaser.Scene {
     });
 
     // Callback for player and invisible objects:
-    this.physics.add.collider(player, itablet, this.openITablet.bind(this));
-    this.physics.add.collider(player, ishelve, this.openIShelve.bind(this));
+    this.physics.add.collider(player, itablet, this.openITablet.bind(this, tablet_open));
+    this.physics.add.collider(player, ishelve, this.openIShelve.bind(this, shelve_open));
     this.physics.add.collider(player, istove, this.openIStove.bind(this));
 
     // Define controls:
