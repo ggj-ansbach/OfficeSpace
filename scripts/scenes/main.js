@@ -1,3 +1,8 @@
+let blocks;
+let player;
+let tablet_direction;
+let stove_direction;
+let shelve_direction;
 let controls;
 let items;
 let tablet_open;
@@ -13,11 +18,6 @@ let timerStart = false;
 class MainScene extends Phaser.Scene {
   constructor() {
     super({key: game_data.scene_list.MAIN});
-    let blocks;
-    let player;
-    let tablet_direction;
-    let stove_direction;
-    let shelve_direction;
   }
 
   checkOverlap(spriteA, spriteB) {
@@ -152,6 +152,11 @@ class MainScene extends Phaser.Scene {
 
   update() {
     timerValue.text = padLeft(timer);
+
+    if (!timer) {
+      this.player.setTint(0xff0000);
+      this.player.body.enable = false;
+    }
 
     if (controls.up.isDown) {
       this.player.setVelocityY(-160);
