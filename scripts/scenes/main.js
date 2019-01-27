@@ -12,7 +12,7 @@ let timerHeader;
 let timerInitValue;
 let timerValue;
 let timerText;
-let timer = 15;
+let timer = 30;
 let timerStart = false;
 
 class MainScene extends Phaser.Scene {
