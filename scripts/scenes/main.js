@@ -44,6 +44,7 @@ class MainScene extends Phaser.Scene {
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
     this.load.audio('shelve_open', 'assets/sounds/cabinet_open.mp3');
     this.load.audio('tablet_open', 'assets/sounds/tablet_unlock.mp3');
+    this.load.audio('stove_open', 'assets/sounds/stove_start.mp3');
   }
 
   create() {
@@ -68,6 +69,7 @@ class MainScene extends Phaser.Scene {
 
     let shelve_open = this.sound.add('shelve_open');
     let tablet_open = this.sound.add('tablet_open');
+    let stove_open = this.sound.add('stove_open');
 
     // Character Frame Set:
     // 0   1  2  3 [Base, Down]
@@ -141,7 +143,7 @@ class MainScene extends Phaser.Scene {
     // Callback for player and invisible objects:
     this.physics.add.collider(player, itablet, this.openITablet.bind(this, tablet_open));
     this.physics.add.collider(player, ishelve, this.openIShelve.bind(this, shelve_open));
-    this.physics.add.collider(player, istove, this.openIStove.bind(this));
+    this.physics.add.collider(player, istove, this.openIStove.bind(this, stove_open));
 
     // Define controls:
     controls = this.input.keyboard.createCursorKeys();
