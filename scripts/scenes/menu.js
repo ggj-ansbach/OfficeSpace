@@ -1,4 +1,3 @@
-
 class Menu extends Phaser.Scene {
 
   constructor() {
@@ -10,7 +9,7 @@ class Menu extends Phaser.Scene {
     this.load.image('menu', '/assets/images/objects/menu.png');
     this.load.bitmapFont('carrier_command', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
   }
-  
+
   create () {
     let bg = this.add.sprite(400, 300, 'menu');
     let bmpText = this.add.bitmapText(40, 350, 'carrier_command','Everyday Kitchen', 34);
