@@ -9,5 +9,6 @@ const game = new Phaser.Game({
     MainScene,
     TabletScene,
     ShelveScene,
+    StoveScene
   ],
 });
