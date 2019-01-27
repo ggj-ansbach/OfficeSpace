@@ -24,7 +24,7 @@ class TabletScene extends Phaser.Scene {
 
     // Add time text:
     timerHeader = this.add.bitmapText(600, 360, 'carrier_command', 'TIME', 20);
-    timerValue = this.add.bitmapText(595, 410, 'carrier_command', timerInitValue, 40);
+    timerValue = this.add.bitmapText(595, 410, 'carrier_command', timer, 40);
     timerText = this.add.bitmapText(685, 430, 'carrier_command', 's', 20);
 
     let noteX = note.x - 100;
@@ -41,5 +41,9 @@ class TabletScene extends Phaser.Scene {
     }, this);
 
     console.log('TabletScene created');
+  }
+
+  update() {
+    timerValue.text = timer;
   }
 }

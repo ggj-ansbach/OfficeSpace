@@ -34,4 +34,8 @@ class StoveScene extends Phaser.Scene {
 
     console.log('StoveScene created');
   }
+
+  update() {
+    timerValue.text = timer;
+  }
 }

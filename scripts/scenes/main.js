@@ -7,7 +7,8 @@ let timerHeader;
 let timerInitValue;
 let timerValue;
 let timerText;
-let timer;
+let timer = 15;
+let timerStart = false;
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -29,6 +30,7 @@ class MainScene extends Phaser.Scene {
     game.sound.stopAll();
     sound.play();
     this.scene.switch(game_data.scene_list.TABLET, {});
+    timerStart = true;
   }
 
   openShelve(sound) {
@@ -76,8 +78,7 @@ class MainScene extends Phaser.Scene {
 
     // Add time text
     timerHeader = this.add.bitmapText(105, 460, 'carrier_command', 'TIME', 20);
-    timerInitValue = 15;
-    timerValue = this.add.bitmapText(100, 510, 'carrier_command', timerInitValue, 40);
+    timerValue = this.add.bitmapText(100, 510, 'carrier_command', timer, 40);
     timerText = this.add.bitmapText(190, 530, 'carrier_command', 's', 20);
 
     // this.player settings:
@@ -150,6 +151,8 @@ class MainScene extends Phaser.Scene {
   }
 
   update() {
+    timerValue.text = timer;
+
     if (controls.up.isDown) {
       this.player.setVelocityY(-160);
       this.player.setVelocityX(0);
