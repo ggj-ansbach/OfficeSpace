@@ -2,6 +2,17 @@ let player;
 let controls;
 let blocks;
 let items;
+let tablet_open;
+let shelve_open;
+let stove_open;
+let itablet;
+let ishelve;
+let istove;
+let timerHeader;
+let timerInitValue;
+let timerValue;
+let timerText;
+let timer;
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -59,7 +70,10 @@ class MainScene extends Phaser.Scene {
     blocks.create(400, 508, 'hud');
     
     // Add time text
-    let bmpText = this.add.bitmapText(100, 450, 'carrier_command','TIME', 20);
+    timerHeader = this.add.bitmapText(105, 460, 'carrier_command', 'TIME', 20);
+    timerInitValue = 15;
+    timerValue = this.add.bitmapText(100, 510, 'carrier_command', timerInitValue, 40);
+    timerText = this.add.bitmapText(190, 530, 'carrier_command', 's', 20);
 
     // Player settings:
     player = this.physics.add.sprite(game_data.coordinatesX, game_data.coordinatesY, 'chef').setScale(1.25);
@@ -67,9 +81,9 @@ class MainScene extends Phaser.Scene {
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
 
-    let shelve_open = this.sound.add('shelve_open');
-    let tablet_open = this.sound.add('tablet_open');
-    let stove_open = this.sound.add('stove_open');
+    shelve_open = this.sound.add('shelve_open');
+    tablet_open = this.sound.add('tablet_open');
+    stove_open = this.sound.add('stove_open');
 
     // Character Frame Set:
     // 0   1  2  3 [Base, Down]
@@ -116,7 +130,7 @@ class MainScene extends Phaser.Scene {
     // Group player and blocks for collision:
     this.physics.add.collider(player, blocks);
 
-    let itablet = this.physics.add.group({
+    itablet = this.physics.add.group({
       key: 'itablet',
       setXY: {
         x: 382,
@@ -124,7 +138,7 @@ class MainScene extends Phaser.Scene {
       }
     });
 
-    let ishelve = this.physics.add.group({
+    ishelve = this.physics.add.group({
       key: 'ishelve',
       setXY: {
         x: 100,
@@ -132,7 +146,7 @@ class MainScene extends Phaser.Scene {
       }
     });
 
-    let istove = this.physics.add.group({
+    istove = this.physics.add.group({
       key: 'istove',
       setXY: {
         x: 682,
