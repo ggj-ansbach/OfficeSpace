@@ -3,6 +3,7 @@ class Menu extends Phaser.Scene {
 
   constructor() {
     super({key: game_data.scene_list.MENU});
+    game.sound.stopAll();
   }
 
   preload() {
