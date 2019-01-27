@@ -2,6 +2,17 @@ let player;
 let controls;
 let blocks;
 let items;
+let tablet_open;
+let shelve_open;
+let stove_open;
+let itablet;
+let ishelve;
+let istove;
+let timerHeader;
+let timerInitValue;
+let timerValue;
+let timerText;
+let timer;
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -11,6 +22,7 @@ class MainScene extends Phaser.Scene {
     this.time_left;
   }
 
+<<<<<<< HEAD
   openITablet(sound, data) {
     sound.play();
     this.scene.start(game_data.scene_list.TABLET, data); // sends current scene into sleep and loads sleeping one
@@ -36,6 +48,30 @@ class MainScene extends Phaser.Scene {
   openIStove() {
     this.scene.sleep();
     this.scene.run(game_data.scene_list.STOVE, {});
+=======
+  openITablet(sound) {
+    this.input.keyboard.on("keyup_SPACE", () => {
+      game.sound.stopAll();
+      sound.play();
+      this.scene.start(game_data.scene_list.TABLET, {});
+    }, this);
+  }
+
+  openIShelve(sound) {
+    this.input.keyboard.on("keyup_SPACE", () => {
+      game.sound.stopAll();
+      sound.play();
+      this.scene.start(game_data.scene_list.SHELVE, {});
+    }, this);
+  }
+
+  openIStove(sound) {
+    this.input.keyboard.on("keyup_SPACE", () => {
+      game.sound.stopAll();
+      sound.play();
+      this.scene.start(game_data.scene_list.STOVE, {});
+    }, this);
+>>>>>>> a3883e4d14fd61b63a61f24cf1bc838794a1f4f9
   }
 
   preload() {
@@ -53,6 +89,7 @@ class MainScene extends Phaser.Scene {
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
     this.load.audio('shelve_open', 'assets/sounds/cabinet_open.mp3');
     this.load.audio('tablet_open', 'assets/sounds/tablet_unlock.mp3');
+    this.load.audio('stove_open', 'assets/sounds/stove_start.mp3');
   }
 
   create() {
@@ -73,17 +110,28 @@ class MainScene extends Phaser.Scene {
     blocks.create(400, 508, 'hud');
     
     // Add time text
+<<<<<<< HEAD
     let bmp_text = this.add.bitmapText(100, 450, 'carrier_command','TIME', 20);
     this.time_left = this.add.bitmapText(100, 480, 'carrier_command',this.registry.get('time_left') + ' s', 20);
 
     // Player settings:
     this.player = this.physics.add.sprite(150, 325, 'chef').setScale(1.25);
+=======
+    timerHeader = this.add.bitmapText(105, 460, 'carrier_command', 'TIME', 20);
+    timerInitValue = 15;
+    timerValue = this.add.bitmapText(100, 510, 'carrier_command', timerInitValue, 40);
+    timerText = this.add.bitmapText(190, 530, 'carrier_command', 's', 20);
+
+    // Player settings:
+    player = this.physics.add.sprite(game_data.coordinatesX, game_data.coordinatesY, 'chef').setScale(1.25);
+>>>>>>> a3883e4d14fd61b63a61f24cf1bc838794a1f4f9
     // items = this.add.sprite(100, 220, 'items');
     this.player.body.allowGravity = false;
     this.player.setCollideWorldBounds(true);
 
-    let shelve_open = this.sound.add('shelve_open');
-    let tablet_open = this.sound.add('tablet_open');
+    shelve_open = this.sound.add('shelve_open');
+    tablet_open = this.sound.add('tablet_open');
+    stove_open = this.sound.add('stove_open');
 
     // Character Frame Set:
     // 0   1  2  3 [Base, Down]
@@ -130,7 +178,7 @@ class MainScene extends Phaser.Scene {
     // Group player and blocks for collision:
     this.physics.add.collider(this.player, blocks);
 
-    let itablet = this.physics.add.group({
+    itablet = this.physics.add.group({
       key: 'itablet',
       setXY: {
         x: 382,
@@ -138,7 +186,7 @@ class MainScene extends Phaser.Scene {
       }
     });
 
-    let ishelve = this.physics.add.group({
+    ishelve = this.physics.add.group({
       key: 'ishelve',
       setXY: {
         x: 100,
@@ -146,7 +194,7 @@ class MainScene extends Phaser.Scene {
       }
     });
 
-    let istove = this.physics.add.group({
+    istove = this.physics.add.group({
       key: 'istove',
       setXY: {
         x: 682,
@@ -155,9 +203,15 @@ class MainScene extends Phaser.Scene {
     });
 
     // Callback for player and invisible objects:
+<<<<<<< HEAD
     this.physics.add.collider(this.player, itablet, this.openITablet.bind(this, tablet_open, {player: this.player})); // (scope, sound_file, data)
     this.physics.add.collider(this.player, ishelve, this.openIShelve.bind(this, shelve_open, {player: this.player}));
     this.physics.add.collider(this.player, istove, this.openIStove.bind(this, '', {player: this.player})); // Need to work here
+=======
+    this.physics.add.collider(player, itablet, this.openITablet.bind(this, tablet_open));
+    this.physics.add.collider(player, ishelve, this.openIShelve.bind(this, shelve_open));
+    this.physics.add.collider(player, istove, this.openIStove.bind(this, stove_open));
+>>>>>>> a3883e4d14fd61b63a61f24cf1bc838794a1f4f9
 
     // Define controls:
     controls = this.input.keyboard.createCursorKeys();
@@ -185,5 +239,8 @@ class MainScene extends Phaser.Scene {
       this.player.setVelocityY(0);
       this.player.anims.play('turn', true);
     }
+    
+    game_data.coordinatesX = player.x;
+    game_data.coordinatesY = player.y;
   }
 }

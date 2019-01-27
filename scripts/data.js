@@ -3,6 +3,8 @@ class GameData {
   constructor () {
     this.TABLE_X = 630;
     this.TABLE_Y = 690;
+    this.coordinatesX = 150;
+    this.coordinatesY = 325;
     this.scene_list = {
       MENU: 'Menu',
       MAIN: 'Main',

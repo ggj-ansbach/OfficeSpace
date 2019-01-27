@@ -1,6 +1,40 @@
 # Every Day Kitchen
 A vintage recipe game for improving the memory
 
+## LEVELS
+### Lvl 1 
+* Bell Pepper
+* Tomato
+* Tomato
+* Bread
+* Cheese
+
+### Lvl 2
+* Cheese
+* Cheese
+* Bread
+* Chicken
+* Bell Pepper
+* Cheese
+
+### Lvl 3
+* Tomato
+* Chicken
+* Cheese
+* Broccoli
+* Chicken
+* Bread
+* Chicken
+
+### Lvl 4
+* Cheese
+* Broccoli
+* Bread
+* Broccoli
+* Tomato
+* Chicken
+* Bell Pepper
+* Tomato
 
 ## Assets: 
 ### Screens: 
