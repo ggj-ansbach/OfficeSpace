@@ -3,9 +3,6 @@ let items;
 let tablet_open;
 let shelve_open;
 let stove_open;
-let itablet;
-let ishelve;
-let istove;
 let timerHeader;
 let timerInitValue;
 let timerValue;
@@ -29,21 +26,21 @@ class MainScene extends Phaser.Scene {
   }
 
   openTablet(sound) {
-      game.sound.stopAll();
-      sound.play();
-      this.scene.switch(game_data.scene_list.TABLET, {});
+    game.sound.stopAll();
+    sound.play();
+    this.scene.switch(game_data.scene_list.TABLET, {});
   }
 
   openShelve(sound) {
-      game.sound.stopAll();
-      sound.play();
-      this.scene.switch(game_data.scene_list.SHELVE, {});
+    game.sound.stopAll();
+    sound.play();
+    this.scene.switch(game_data.scene_list.SHELVE, {});
   }
 
   openStove(sound) {
-      game.sound.stopAll();
-      sound.play();
-      this.scene.switch(game_data.scene_list.STOVE, {});
+    game.sound.stopAll();
+    sound.play();
+    this.scene.switch(game_data.scene_list.STOVE, {});
   }
 
   preload() {
@@ -53,12 +50,8 @@ class MainScene extends Phaser.Scene {
     this.load.image('shelve', '/assets/images/objects/shelve.png');
     this.load.image('stove', '/assets/images/objects/stove.png');
     this.load.image('table', '/assets/images/objects/table.png');
-    this.load.image('itablet', '/assets/images/objects/itablet.png');
-    this.load.image('ishelve', '/assets/images/objects/ishelve.png');
-    this.load.image('istove', '/assets/images/objects/istove.png');
     this.load.image('hud', '/assets/images/objects/hud.png');
     this.load.image('arrow', '/assets/images/objects/arrow.png');
-
     this.load.bitmapFont('carrier_command', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
     this.load.audio('shelve_open', 'assets/sounds/cabinet_open.mp3');
@@ -80,7 +73,7 @@ class MainScene extends Phaser.Scene {
     this.tablet_direction = this.add.sprite(370, 270, 'arrow').setAngle(90).setScale(0.8);
     this.shelve_direction = this.add.sprite(120, 100, 'arrow').setAngle(-90).setScale(0.8);
     this.stove_direction = this.add.sprite(650, 230, 'arrow').setAngle(0).setScale(0.8);
-    
+
     // Add time text
     timerHeader = this.add.bitmapText(105, 460, 'carrier_command', 'TIME', 20);
     timerInitValue = 15;
@@ -142,42 +135,13 @@ class MainScene extends Phaser.Scene {
     // Group this.player and this.blocks for collision:
     this.physics.add.collider(this.player, this.blocks);
 
-    itablet = this.physics.add.group({
-      key: 'itablet',
-      setXY: {
-        x: 382,
-        y: 325,
-      }
-    });
-
-    ishelve = this.physics.add.group({
-      key: 'ishelve',
-      setXY: {
-        x: 100,
-        y: 86,
-      }
-    });
-
-    istove = this.physics.add.group({
-      key: 'istove',
-      setXY: {
-        x: 682,
-        y: 242,
-      }
-    });
-
-    // Callback for this.player and invisible objects:
-    this.physics.add.collider(this.player, itablet) ;
-    this.physics.add.collider(this.player, ishelve); 
-    this.physics.add.collider(this.player, istove);
-
     this.input.keyboard.on("keyup_SPACE", () => {
       if (this.checkOverlap(this.player, this.shelve_direction))  { // player & shelve
-          this.openShelve(shelve_open);
+        this.openShelve(shelve_open);
       } else if(this.checkOverlap(this.player, this.tablet_direction)) { // player & tablet
-          this.openTablet(tablet_open);
+        this.openTablet(tablet_open);
       } else if (this.checkOverlap(this.player, this.stove_direction)) { // player & stove
-          this.openStove(stove_open);
+        this.openStove(stove_open);
       }
 
     });
@@ -207,7 +171,7 @@ class MainScene extends Phaser.Scene {
       this.player.setVelocityY(0);
       this.player.anims.play('turn', true);
     }
-    
+
     game_data.coordinatesX = this.player.x;
     game_data.coordinatesY = this.player.y;
   }
