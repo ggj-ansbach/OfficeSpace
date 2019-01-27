@@ -21,6 +21,7 @@ class MainScene extends Phaser.Scene {
 
   openITablet(sound) {
     this.input.keyboard.on("keyup_SPACE", () => {
+      game.sound.stopAll();
       sound.play();
       this.scene.start(game_data.scene_list.TABLET, {});
     }, this);
@@ -28,6 +29,7 @@ class MainScene extends Phaser.Scene {
 
   openIShelve(sound) {
     this.input.keyboard.on("keyup_SPACE", () => {
+      game.sound.stopAll();
       sound.play();
       this.scene.start(game_data.scene_list.SHELVE, {});
     }, this);
@@ -35,6 +37,7 @@ class MainScene extends Phaser.Scene {
 
   openIStove(sound) {
     this.input.keyboard.on("keyup_SPACE", () => {
+      game.sound.stopAll();
       sound.play();
       this.scene.start(game_data.scene_list.STOVE, {});
     }, this);
