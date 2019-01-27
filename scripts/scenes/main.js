@@ -8,11 +8,13 @@ class MainScene extends Phaser.Scene {
     super({key: game_data.scene_list.MAIN});
   }
 
-  openITablet() {
+  openITablet(sound) {
+    sound.play();
     this.scene.start(game_data.scene_list.TABLET, {});
   }
 
-  openIShelve() {
+  openIShelve(sound) {
+    sound.play();
     this.scene.start(game_data.scene_list.SHELVE, {});
   }
 
@@ -28,7 +30,8 @@ class MainScene extends Phaser.Scene {
     this.load.image('hud', '/assets/images/objects/hud.png');
     this.load.bitmapFont('carrier_command', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
-    this.load.spritesheet('household', '/assets/images/sprites/house_inside.png', {frameWidth: 54, frameHeight: 78});
+    this.load.audio('shelve_open', 'assets/sounds/cabinet_open.mp3');
+    this.load.audio('tablet_open', 'assets/sounds/tablet_unlock.mp3');
   }
 
   create() {
@@ -51,6 +54,8 @@ class MainScene extends Phaser.Scene {
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
 
+    let shelve_open = this.sound.add('shelve_open');
+    let tablet_open = this.sound.add('tablet_open');
 
     // Character Frame Set:
     // 0   1  2  3 [Base, Down]
@@ -114,8 +119,8 @@ class MainScene extends Phaser.Scene {
     });
 
     // Callback for player and invisible objects:
-    this.physics.add.collider(player, itablet, this.openITablet.bind(this));
-    this.physics.add.collider(player, ishelve, this.openIShelve.bind(this));
+    this.physics.add.collider(player, itablet, this.openITablet.bind(this, tablet_open));
+    this.physics.add.collider(player, ishelve, this.openIShelve.bind(this, shelve_open));
 
     // Define controls:
     controls = this.input.keyboard.createCursorKeys();
