@@ -6,9 +6,10 @@ const game = new Phaser.Game({
     default: "arcade"
   },
   scene: [
+    Menu,
     MainScene,
     TabletScene,
     ShelveScene,
-    StoveScene
+    StoveScene,
   ],
 });

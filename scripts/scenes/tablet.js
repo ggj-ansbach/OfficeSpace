@@ -4,20 +4,20 @@ class TabletScene extends Phaser.Scene {
     this.recipes_level1 = ['Bell Pepper', 'Tomato', 'Tomato', 'Bread', 'Cheese'];
   }
 
-  onDown () {
+  onDown() {
     console.log("Going back to MainScene");
     this.scene.stop();
     this.scene.start(game_data.scene_list.MAIN);
     game.sound.stopAll();
   }
 
-  preload () {
+  preload() {
     this.load.image('tablet', '/assets/images/backgrounds/tablet.png');
     this.load.image('close', '/assets/images/objects/close.png');
     this.load.image('note', '/assets/images/objects/note.png');
   }
 
-  create () {
+  create() {
     let blocks = this.physics.add.staticGroup();
     blocks.create(400 , 300, 'tablet');
     let note = blocks.create(270, 294, 'note');
