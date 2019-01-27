@@ -18,10 +18,9 @@ class TabletScene extends Phaser.Scene {
   }
 
   create () {
-    debugger
     let blocks = this.physics.add.staticGroup();
     blocks.create(400 , 300, 'tablet');
-    let note = blocks.create(270, 294, 'note').setScale(0.17, 0.15); // sprite is so big
+    let note = blocks.create(270, 294, 'note');
 
     // Add time text:
     timerHeader = this.add.bitmapText(600, 360, 'carrier_command', 'TIME', 20);
@@ -31,12 +30,7 @@ class TabletScene extends Phaser.Scene {
     let noteX = note.x - 100;
     let noteY = note.y - 150;
     let temp;
-    for (let recipe of this.recipes_level1) {
-      noteY += 50;
-      temp = this.add.bitmapText(noteX, noteY, 'carrier_command', recipe, 20);
-      temp.tint = 'red'
-    }
-    
+
     // Create close after tablet, otherwise backgroudn may cover close
     let close = this.add.sprite(755, 45, 'close');
     close.setInteractive();
