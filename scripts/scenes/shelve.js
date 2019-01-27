@@ -28,7 +28,7 @@ class ShelveScene extends Phaser.Scene {
     // Iterate and generate co-ordinates for sprites
     for (let i = 0; i < this.RECIPE_COUNT; i++) {
       console.log(start_x, start_y);
-      this.add.sprite(start_x, start_y, 'arrow');
+      this.add.sprite(start_x, start_y, 'broccoli');
       if (i !== ((this.RECIPE_COUNT / 2) - 1)) { // At half, update co-ords
         start_x += this.HORIZONTAL_SPACING;
         start_y = this.VERTICAL_SPACING;
@@ -49,7 +49,7 @@ class ShelveScene extends Phaser.Scene {
   preload () {
     this.load.image('shelf', '/assets/images/backgrounds/shelf.png');
     this.load.image('close', '/assets/images/objects/close.png');
-    this.load.image('arrow', '/assets/images/objects/arrow.png');
+    this.load.image('broccoli', '/assets/images/icons/broccoli.png');
     this.load.image('mask', '/assets/images/objects/itablet.png');
   }
 
