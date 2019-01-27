@@ -8,11 +8,13 @@ class MainScene extends Phaser.Scene {
     super({key: game_data.scene_list.MAIN});
   }
 
-  openITablet() {
+  openITablet(sound) {
+    sound.play();
     this.scene.start(game_data.scene_list.TABLET, {});
   }
 
-  openIShelve() {
+  openIShelve(sound) {
+    sound.play();
     this.scene.start(game_data.scene_list.SHELVE, {});
   }
 
@@ -33,7 +35,8 @@ class MainScene extends Phaser.Scene {
     this.load.image('hud', '/assets/images/objects/hud.png');
     this.load.bitmapFont('carrier_command', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
     this.load.spritesheet('chef', '/assets/images/sprites/chef.png', {frameWidth: 54, frameHeight: 78});
-    this.load.spritesheet('furniture', '/assets/images/sprites/furniture.png', {frameWidth: 54, frameHeight: 78});
+    this.load.audio('shelve_open', 'assets/sounds/cabinet_open.mp3');
+    this.load.audio('tablet_open', 'assets/sounds/tablet_unlock.mp3');
   }
 
   create() {
@@ -56,6 +59,8 @@ class MainScene extends Phaser.Scene {
     player.body.allowGravity = false;
     player.setCollideWorldBounds(true);
 
+    let shelve_open = this.sound.add('shelve_open');
+    let tablet_open = this.sound.add('tablet_open');
 
     // Character Frame Set:
     // 0   1  2  3 [Base, Down]

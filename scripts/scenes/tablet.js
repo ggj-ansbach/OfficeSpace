@@ -11,12 +11,16 @@ class TabletScene extends Phaser.Scene {
   preload () {
     this.load.image('tablet', '/assets/images/backgrounds/tablet.png');
     this.load.image('close', '/assets/images/objects/close.png');
+    this.load.image('note', '/assets/images/objects/note.png');
   }
 
   create () {
-    console.log("In the TabletScene");
-    this.add.sprite(400 , 300, 'tablet');
-
+    // Adding tablet and note as a group
+    let blocks = this.physics.add.staticGroup();
+    blocks.create(400 , 300, 'tablet');
+    let note = blocks.create(270, 294, 'note').setScale(0.17, 0.15); // sprite is so big
+    
+    // Create close after tablet, otherwise backgroudn may cover close
     let close = this.add.sprite(755, 45, 'close');
     close.setInteractive();
     close.on('pointerdown', this.onDown.bind(this));
